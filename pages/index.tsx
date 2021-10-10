@@ -40,7 +40,6 @@ const Home: NextPage = () => {
   }, [searchText]);
 
   useEffect(() => {
-    console.log("fired");
     if (searchText.length > 2) {
       searchedPokemons === undefined || searchedPokemons.length == 0
         ? setNoPokemonFound(true)
@@ -103,9 +102,12 @@ const Home: NextPage = () => {
       <ul
         className={`${optionState} absolute w-full text-center top-10 z-10 bg-gray-50 border-2 border-gray-400 overflow-y-auto max-h-56`}
       >
-        {searchedPokemons?.map((pokemon) => {
+        {searchedPokemons?.map((pokemon, index) => {
           return (
-            <li className="bg-blue-100 w-full text-lg py-3 border-b-2 border-gray-400 cursor-pointer hover:bg-blue-200">
+            <li
+              key={index}
+              className="bg-blue-100 w-full text-lg py-3 border-b-2 border-gray-400 cursor-pointer hover:bg-blue-200"
+            >
               {pokemon.name}
             </li>
           );
